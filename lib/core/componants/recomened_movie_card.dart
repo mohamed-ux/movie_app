@@ -25,12 +25,15 @@ class RecommendedMovieCard extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Image.network(
-                    Constance.baseUrl+results.posterPath!,
+                  child: results.posterPath != null?Image.network(
+                    Constance.baseUrl+'${results.posterPath??''}',
                     fit: BoxFit.fill,
                     height: 180,
                     width: double.infinity,
-                  ),
+
+                  ):Container(
+                      height:180,
+                      child: Center(child: Icon(Icons.error,color: Colors.grey,),))
                 ),
                 Stack(
                   alignment: Alignment.center,

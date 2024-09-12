@@ -44,4 +44,15 @@ class ApiManger{
      return MoviesResponse.fromJson(jsonFormat);
    }
 
+   static Future<MoviesResponse?> getSearchMovies(String query)async{
+     //https://api.themoviedb.org/3/movie/{movie_id}/similar
+     Uri url = Uri.https('api.themoviedb.org','/3/search/movie',{
+       'api_key':'169bbffc81fcc975d2f4d11f269b40b7',
+       'query':query
+     });
+     var response = await http.get(url);
+     var jsonFormat = jsonDecode(response.body);
+     return MoviesResponse.fromJson(jsonFormat);
+   }
+
 }
